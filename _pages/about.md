@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: 	&#10024; <i>the future of AI can be kind.</i> &#10024;
 
 profile:
   align: right
