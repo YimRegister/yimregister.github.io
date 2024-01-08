@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: 	&#10024; <i>the future of AI can be kind.</i> &#10024;
+subtitle: <p>	&#10024; <i>the future of AI can be kind.</i> &#10024; </p>
 
 profile:
   align: right
