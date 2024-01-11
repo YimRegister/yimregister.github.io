@@ -9,7 +9,7 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Yim Register</p><br>
+    <p>Yim Register</p> <a href="assets/pdf/YimRegisterCV.pdf", target="_blank">CV 📄</a> <br>
     <p><i>they/them</i></p><br>
     <p>yreg@uw.edu</p>
     
@@ -21,6 +21,7 @@ social: false  # includes social icons at the bottom of the page
 ---
 
 Let's meet at the intersection of joy and justice.
+
 
 I am an [NSF GRFP Fellow](https://ischool.uw.edu/news/2019/11/phd-students-have-passion-inclusive-tech-education) and PhD candidate at the University of Washington [Information School](https://ischool.uw.edu/programs/phd). I study ways that AI algorithms can cause harm, and the best practices for identifying and remedying such algorithmic harms. My main focus is AI education -- using trauma-informed computing to teach AI in empowering, inclusive, and supportive ways. I study the full life cycle of ML algorithms -- from data collection to model selection to model evaluation and deployment; all with the goals of societal benefit and user safety and empowerment. From basic regression to large language models (LLMs), my goals are to quantify bias in the data and output, as well as identify potential harms that may come from the technology we create. 
 
