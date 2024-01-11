@@ -124,8 +124,8 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: the future of AI can be kind # blog_name will be displayed in your blog page
-blog_description: a space for my ramblings
+blog_name: blog # blog_name will be displayed in your blog page
+blog_description: the future of AI can be kind
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -160,7 +160,7 @@ disqus_shortname: al-folio # put your disqus shortname
 # you can display them in your blog by adding a link to the RSS feed.
 external_sources:
   - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
+    rss_url: https://medium.com/@yimregister/feed
 
 # -----------------------------------------------------------------------------
 # Collections

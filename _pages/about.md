@@ -9,20 +9,23 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Yim Register</p>
-    <p><i>they/them</i></p>
+    <p>Yim Register</p><br>
+    <p><i>they/them</i></p><br>
     <p>yreg@uw.edu</p>
     
 
-news: true  # includes a list of news items
+news: false  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: false  # includes social icons at the bottom of the page
 ---
 
+Let's meet at the intersection of joy and justice.
 
-blah blah blah Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am an [NSF GRFP Fellow](https://ischool.uw.edu/news/2019/11/phd-students-have-passion-inclusive-tech-education) and PhD candidate at the University of Washington [Information School](https://ischool.uw.edu/programs/phd). I study ways that AI algorithms can cause harm, and the best practices for identifying and remedying such algorithmic harms. My main focus is AI education -- using trauma-informed computing to teach AI in empowering, inclusive, and supportive ways. I study the full life cycle of ML algorithms -- from data collection to model selection to model evaluation and deployment; all with the goals of societal benefit and user safety and empowerment. From basic regression to large language models (LLMs), my goals are to quantify bias in the data and output, as well as identify potential harms that may come from the technology we create. 
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+When we create technology with compassion, we create a better world for everyone. I've worked with [RStudio](https://education.rstudio.com/), [Code.org](https://code.org/), [MD4SG](https://www.md4sg.com/), and the [Center for an Informed Public](https://www.cip.uw.edu/). I also do visiting talks and workshops, such as *[The Future of AI Can Be Kind](https://www.canva.com/design/DAF0ExseDCw/LcWBNULn85dUPQKEgEMt8Q/view?utm_content=DAF0ExseDCw&utm_campaign=designshare&utm_medium=link&utm_source=editor)* or *[Mental Health, Social Media, and Empowerment](https://www.probonocounseling.org/event/mental-health-social-media-and-empowerment-navigating-client-experiences-with-information-online/)*. I often create [educational resources](/teaching/) and guest lecture on AI/ML topics.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I am also an artist, an avid reader of poetry, a dancer, and an active member of my communities. I advocate for addiction recovery, mental health support, prison reform, and overdose awareness. I am a former child advocate for foster children, and I even used to teach kindergarten before I found my way into my PhD! I use my experiences to expand my perspectives and beliefs about what is possible. 
+
+If we work together, &#10024;*the future of AI can be kind*&#10024;.
