@@ -1,19 +1,19 @@
 - title: General Information
   type: map
   contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+    - name: Name
+      value: Yim Register
+    - name: Position
+      value: PhD Candidate at University of Washington
+    - name: Research
+      value: <i>I study how to remedy algorithmic harms in AI technologies.</i>
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD in Information Science
+      institution: University of Washington
+      year: expected 2024
       description:
         - Description 1.
         - Description 2.
@@ -21,9 +21,9 @@
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+    - title: BS in Brain & Cognitive Sciences (Artifical Intelligence Track)
+      institution: University of Rochester
+      year: 2016
       description:
         - Description 1.
         - Description 2.
