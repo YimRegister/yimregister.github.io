@@ -3,7 +3,7 @@ layout: page
 permalink: /resources/
 title: resources
 description: random stuff i like
-nav: true
+nav: false
 nav_order: 7
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: page
-title: project 5
-description: a project with a background image
-img: assets/img/1.jpg
+title: Social Media Art
+description: art about healthy social media habits
+img: assets/img/socialmediaart.png
 importance: 3
 category: fun
 ---
