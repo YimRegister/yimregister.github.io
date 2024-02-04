@@ -30,6 +30,6 @@ When we create technology with compassion, we create a better world for everyone
 
 <center><img src="assets/img/falling.png" alt="drawing" width="40%"/></center>
 
-I am also an artist, an avid reader of poetry, a dancer, and an active member of my communities. I advocate for addiction recovery, mental health support, prison reform, and overdose awareness. I am a former child advocate for foster children, and I even used to teach kindergarten before I found my way into my PhD! I use my experiences to expand my perspectives and beliefs about what is possible. 
+I am also an artist, an avid reader of poetry, a dancer, and an active member of my communities. I advocate for addiction recovery, mental health support, autism appreciation, prison reform, and overdose awareness. I am a former child advocate for foster children, and I even used to teach kindergarten before I found my way into my PhD! I use my experiences to expand my perspectives and beliefs about what is possible. 
 
 If we work together, &#10024;*the future of AI can be kind*&#10024;.
