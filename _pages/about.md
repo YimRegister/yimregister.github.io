@@ -9,7 +9,7 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Yim Register</p> <a href="assets/pdf/YimRegisterResume.pdf", target="_blank">CV 📄</a> <br>
+    <p>Yim Register</p> <a href="assets/pdf/YimRegisterResume.pdf", target="_blank">Resumé 📄</a> <br>
     <p><i>they/them</i></p><br>
     <p>yreg@uw.edu</p><br>
     <p>Dissertation </p> <a href="assets/pdf/YimRegister_Dissertation.pdf", target="_blank"> PDF 📄</a>
