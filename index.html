@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yim Register — PhD, AI Researcher. Personal academic website.">
+  <title>Yim Register</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Yim Register</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="extras.html">Extras</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Edit the rotating items in js/script.js -->
+    <p class="currently">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      currently: <span id="currently-value" class="cslot-value"></span>
+    </p>
+
+    <!--
+    AFFILIATION BADGE — uncomment to show a lab or institution pill below the currently line.
+    <p style="margin: 0.75rem 0 0;">
+      <span class="pill">Your Lab / Institution</span>
+    </p>
+    -->
+
+    <section class="hero" data-reveal>
+
+      <aside class="hero-aside">
+        <img src="images/Yim1.jpg" alt="Yim Register" class="hero-photo">
+        <p class="hero-pronouns">they / them / dr</p>
+        <div class="hero-aside-links">
+          <a href="assets/YimRegisterResume2026.pdf" target="_blank" class="text-link">CV</a>
+          <a href="assets/YimRegister_Dissertation.pdf" target="_blank" class="text-link">Dissertation</a>
+          <span class="email">yimregister@gmail.com</span>
+        </div>
+      </aside>
+
+      <div class="hero-body">
+        <h1>Yim Register</h1>
+        <p class="title">Applied Scientist · PhD · AI Safety Researcher</p>
+        <blockquote>
+          "&#10024; The future of AI can be kind. &#10024;"
+        </blockquote>
+        <p>
+         I am an Applied Scientist at AWS, where I conduct research and train engineers through Amazon's <a href="https://www.amazon.science/tag/machine-learning-university-mlu" target="_blank" class="teal-link">Machine Learning University</a>. I got my PhD as an <a href="https://ischool.uw.edu/news/2019/11/phd-students-have-passion-inclusive-tech-education" target="_blank" class="teal-link">NSF GRFP Fellow</a> from the <a href="https://ischool.uw.edu/"target="_blank" class="teal-link">University of Washington iSchool</a>, where I received the global <a href="https://ischool.uw.edu/news/2025/07/phd-alum-yim-register-25-wins-global-dissertation-award" target="_blank" class="teal-link">Doctoral Dissertation Award</a> for my dissertation <i> <a href="assets/YimRegister_Dissertation.pdf" target="_blank" class="teal-link">The Future of AI Can Be Kind: Strategies for Embedded Ethics in AI Education</i></a>.
+
+
+
+
+   <a href="" target="_blank" class="teal-link"></a>
+
+        </p>
+
+        <!-- Art with hover caption. Edit the figcaption text. -->
+        <div class="art-placeholder-inline">
+          <figure class="art-caption">
+            <img src="images/imagine.JPG" alt="my art depicting positive AI futures" class="art-fade">
+            <figcaption>I illustrated ways that AI could contribute to a positive future, and I wrote about it in my Medium piece "Imagining AI Futures That Don't Suck"</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="section-title" data-reveal>Featured Work</h2>
+    <!-- To add a paper: copy one <li> block, fill in the href, title, meta, desc, and pills. -->
+    <ul class="item-list">
+      <li data-reveal>
+        <div class="item-icon">
+          <img src="images/railens.png" alt="well architected logo">
+        </div>
+        <div class="item-content">
+          <a href="https://aws.amazon.com/blogs/machine-learning/announcing-the-aws-well-architected-responsible-ai-lens/" class="item-title" target="_blank">AWS Well-Architected Responsible AI Lens</a>
+          <div class="item-meta">Contributor · 2025</div>
+          <p class="item-desc">Authored several best practices of the AWS Well-Architected RAI Lens; establishing architectural blueprints for risk assessment, AI guardrails, and security filtering deployed across hundreds of thousands of customer AI workloads.</p>
+          <div class="pill-row">
+            <span class="pill">agentic AI</span>
+            <span class="pill">software engineering</span>
+            <span class="pill">responsible AI</span>
+          </div>
+        </div>
+      </li>
+      
+      <li data-reveal>
+        <!-- Replace with <img src="images/your-art.jpg" alt=""> for an icon. -->
+        <div class="item-icon"><img src="images/advocacy.jpg" alt=""></div>
+        <div class="item-content">
+          <a href="https://dl.acm.org/doi/abs/10.1145/3372782.3406252" class="item-title" target="_blank">Learning Machine Learning with Personal Data Helps Stakeholders Ground Advocacy Arguments in Model Mechanics</a>
+          <div class="item-meta">ICER 2020 · Yim Register &amp; Amy J. Ko</div>
+          <p class="item-desc">Shows that learning ML with personal data enables stakeholders to ground advocacy arguments in how models actually work.</p>
+          <div class="pill-row">
+            <span class="pill">ML education</span>
+            <span class="pill">advocacy</span>
+            <span class="pill">personal data</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Yim Register · PhD · Applied Scientist · AI Safety Researcher</span>
+      <div class="footer-links">
+        <a href="research.html">Research</a>
+        <a href="extras.html">Extras</a>
+        <a href="assets/YimRegisterResume2026.pdf" target="_blank">CV</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+/* =====================================================================
+   SITE CONTROLS — edit these to tune the whole site
+   =====================================================================
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │  ACCENT COLOR — change this ONE line to recolor the whole site  │
+   │  Current: celadon green #A1CCA5                                 │
+   │  Try: dusty rose #D4A5A5 · slate blue #8FA3BF · warm sand #C9B99A │
+   └─────────────────────────────────────────────────────────────────┘
+*/
+:root {
+  --accent:  #20A39E;   /* ← change this to recolor everything */
+
+  /* Other palette — edit if needed, but accent above drives the look */
+  --bg:      #ffffff;
+  --nav-bg:  #F2F4F3;
+  --muted:   #7F7B82;
+  --text:    #444554;
+  --dark:    #172121;
+
+  /* ---------------------------------------------------------------
+     SIZES
+     --------------------------------------------------------------- */
+  --hero-photo-size:            190px;
+  --item-icon-size:             72px;
+
+  /* Art grid: minimum cell width — increase to make grid cells larger
+     e.g. 150px = small, 200px = medium, 260px = large              */
+  --art-cell-min:               150px;
+
+  --art-placeholder-min-height: 80px;
+  --max-width:                  860px;
+
+  /* ---------------------------------------------------------------
+     ANIMATION — set any duration to 0s to disable that effect
+     --------------------------------------------------------------- */
+  --anim-ease:            cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-fade-duration:   0.45s;
+  --anim-stagger:         0.07s;
+  --page-transition:      0.22s;
+  --scroll-reveal-offset: 16px;
+
+  /* Pulsing dot */
+  --pulse-color:    var(--accent);
+  --pulse-duration: 2.2s;
+
+  /* "Currently" value cross-fade */
+  --currently-fade: 0.4s;
+}
+
+/* =====================
+   Reset / Base
+   ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  animation: pageFadeIn var(--page-transition) var(--anim-ease) both;
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+  transition: color var(--anim-fade-duration) var(--anim-ease);
+}
+a:hover { color: var(--muted); }
+
+/* =====================
+   Animations
+   ===================== */
+@keyframes pageFadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pageFadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+body.is-leaving {
+  animation: pageFadeOut var(--page-transition) var(--anim-ease) both;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--scroll-reveal-offset));
+  transition:
+    opacity   var(--anim-fade-duration) var(--anim-ease),
+    transform var(--anim-fade-duration) var(--anim-ease);
+  transition-delay: calc(var(--reveal-i, 0) * var(--anim-stagger));
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+/* Pulsing dot */
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%       { opacity: 0.3; transform: scale(0.65); }
+}
+.pulse-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--pulse-color);
+  margin-right: 0.5em;
+  vertical-align: middle;
+  animation: pulse var(--pulse-duration) ease-in-out infinite;
+}
+
+/* Currently value cross-fade */
+@keyframes cOut { from { opacity:1; transform:translateY(0);   } to { opacity:0; transform:translateY(-5px); } }
+@keyframes cIn  { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0);   } }
+
+/* Art image fade-in (triggered by JS .loaded class) */
+.art-fade {
+  opacity: 0;
+  border-radius: 10px;
+  transition: opacity 0.7s var(--anim-ease);
+}
+.art-fade.loaded { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  body, body.is-leaving          { animation: none; }
+  .reveal                        { opacity: 1; transform: none; transition: none; }
+  .pulse-dot                     { animation: none; }
+  .cslot-value.c-leaving,
+  .cslot-value.c-entering        { animation: none; }
+  .art-fade                      { opacity: 1; transition: none; }
+}
+
+/* =====================
+   Layout
+   ===================== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* =====================
+   Navigation
+   ===================== */
+nav {
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--accent);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--dark);
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0; padding: 0;
+}
+.nav-links a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--dark); }
+.nav-links a.active {
+  color: var(--dark);
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* =====================
+   Page header
+   ===================== */
+.page-header {
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--accent);
+  margin-bottom: 2rem;
+}
+.page-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.9rem;
+  color: var(--dark);
+  font-weight: 700;
+}
+.page-header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* =====================
+   "Currently" — rotating status line on the home page.
+   Edit items in js/script.js.
+   ===================== */
+.currently {
+  margin: 1.8rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cslot {
+  display: inline-block;
+  vertical-align: baseline;
+}
+.cslot-value {
+  display: inline-block;
+  color: var(--text);
+  font-weight: 500;
+}
+.cslot-value.c-leaving  { animation: cOut var(--currently-fade) var(--anim-ease) both; }
+.cslot-value.c-entering { animation: cIn  var(--currently-fade) var(--anim-ease) both; }
+
+/* =====================
+   Inline links (.text-link)
+   Celadon highlight on hover, arrow suffix, no underline
+   ===================== */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dark);
+  text-decoration: none;
+  background: transparent;
+  border-radius: 3px;
+  padding: 0.05rem 0.3rem;
+  margin: 0 -0.3rem;
+  transition: background 0.15s, color 0.15s;
+}
+.text-link::after { content: '↗'; font-size: 0.72em; opacity: 0.55; margin-left: 0.15em; }
+.text-link:hover  { background: var(--accent); color: var(--dark); }
+.text-link.internal::after { content: '→'; }
+
+.teal-link {
+  color: var(--accent);
+  text-decoration: none; /* Optional: removes the default underline */
+  transition: color 0.2s ease; /* Optional: makes the color change smooth */
+}
+
+.teal-link:hover {
+  color: #4db6ac; /* A lighter, softer teal */
+  text-decoration: underline; /* Optional: adds underline on hover */
+}
+
+/* =====================
+   Pills / tags
+   Use <span class="pill"> or <a class="pill" href="...">
+   ===================== */
+.pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  background: var(--nav-bg);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 99px;
+  padding: 0.15rem 0.65rem;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+a.pill:hover {
+  background: var(--accent);
+  color: var(--dark);
+}
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+/* =====================
+   Hero (index) — photo RIGHT
+   ===================== */
+.hero {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2.5rem;
+  align-items: flex-start;
+  padding: 2rem 0 2rem;
+  border-bottom: 1px solid var(--accent);
+}
+.hero-aside {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: var(--hero-photo-size);
+}
+.hero-photo {
+  width: var(--hero-photo-size);
+  height: var(--hero-photo-size);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  box-shadow: 0 6px 20px rgba(23, 33, 33, 0.09);
+}
+.hero-pronouns {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.hero-aside-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: center;
+  width: 100%;
+}
+.hero-aside-links .text-link {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+.hero-aside-links .email {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.hero-body { flex: 1; }
+.hero-body h1 {
+  margin: 0 0 0.1rem;
+  font-size: 2rem;
+  color: var(--dark);
+  font-weight: 700;
+}
+.hero-body .title {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+.hero-body > p {
+  margin: 0 0 1.1rem;
+  font-size: 0.97rem;
+}
+blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0 0 1rem;
+  padding: 0.35rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.93rem;
+}
+
+/* =====================
+   Art caption overlay
+   Wrap any image in <figure class="art-caption"><figcaption>...</figcaption></figure>
+   to get a semi-transparent caption on hover.
+   ===================== */
+.art-caption {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0;
+}
+.art-caption img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.art-caption figcaption {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.58);
+  color: #fff;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+.art-caption:hover figcaption { opacity: 1; }
+
+/* art-slot also gets caption support */
+.art-slot .art-caption {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.art-slot .art-caption img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.art-slot .art-caption figcaption { border-radius: 8px; font-size: 0.78rem; }
+
+/* Container for art on the index page hero body.
+   The image inside grows naturally; no fixed height. */
+.art-placeholder-inline {
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: var(--art-placeholder-min-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.art-placeholder-inline img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* =====================
+   Section headings — left accent bar, no bottom border
+   ===================== */
+h2.section-title {
+  font-size: 0.72rem;
+  color: var(--dark);
+  margin: 2.5rem 0 1rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--accent);
+}
+
+/* =====================
+   Item list (publications, etc.)
+   ===================== */
+.item-list { list-style: none; padding: 0; margin: 0; }
+.item-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ebebeb;
+}
+.item-list li:last-child { border-bottom: none; }
+
+.item-icon {
+  flex-shrink: 0;
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.item-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.item-icon-empty { font-size: 0.6rem; color: var(--muted); text-align: center; }
+
+.item-content { flex: 1; }
+.item-title {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.item-title:hover { color: var(--accent); }
+.item-meta { font-size: 0.8rem; color: var(--muted); margin: 0.15rem 0 0.3rem; }
+.item-desc { font-size: 0.92rem; margin: 0 0 0.4rem; color: var(--text); }
+
+/* =====================
+   Extras / art grid
+   ===================== */
+.art-note { font-size: 0.95rem; color: var(--muted); margin-bottom: 2rem; }
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--art-cell-min), 1fr));
+  gap: 1rem;
+}
+.art-slot {
+  aspect-ratio: 1;
+  background: var(--nav-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  overflow: hidden;
+}
+.art-slot img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain; display: block; border-radius: 8px;
+}
+
+/* =====================
+   Favorites collage
+   Mixed-size grid. Each .fav-item can span columns/rows for variety.
+   ===================== */
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 130px;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.fav-item {
+  background: var(--nav-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.8rem;
+  position: relative;
+  transition: transform 0.18s var(--anim-ease);
+}
+.fav-item:hover { transform: scale(1.02); }
+
+/* Size variants — add these classes to .fav-item */
+.fav-wide  { grid-column: span 2; }
+.fav-tall  { grid-row:    span 2; }
+.fav-big   { grid-column: span 2; grid-row: span 2; }
+
+/* When the item has a background image */
+.fav-item[style*="background-image"] {
+  color: #fff;
+}
+.fav-item[style*="background-image"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+  border-radius: 8px;
+}
+.fav-item[style*="background-image"] .fav-label,
+.fav-item[style*="background-image"] .fav-title { position: relative; z-index: 1; }
+
+.fav-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+.fav-item[style*="background-image"] .fav-label { color: rgba(255,255,255,0.7); }
+
+.fav-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.fav-item[style*="background-image"] .fav-title { color: #fff; }
+
+.fav-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+.fav-item[style*="background-image"] .fav-sub { color: rgba(255,255,255,0.65); }
+
+/* Clickable fav-item — stretch an anchor to fill the whole card */
+.fav-item { position: relative; }
+.fav-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 8px;
+}
+/* Keep any inline links inside a card above the overlay */
+.fav-item a:not(.fav-link) { position: relative; z-index: 3; }
+/* Subtle pointer cursor on hover */
+.fav-item:has(.fav-link) { cursor: pointer; }
+
+/* Quote style */
+.fav-quote {
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.fav-quote::before { content: '\201C'; font-size: 1.4rem; line-height: 0; vertical-align: -0.4em; color: var(--accent); margin-right: 0.15em; }
+
+@media (max-width: 560px) {
+  .fav-grid { grid-template-columns: repeat(2, 1fr); }
+  .fav-big  { grid-column: span 2; }
+  .fav-wide { grid-column: span 2; }
+}
+footer {
+  border-top: 1px solid var(--accent);
+  padding: 1.5rem 1.5rem;
+  margin-top: 2rem;
+  background: var(--nav-bg);
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.footer-inner a { color: var(--muted); text-decoration: none; }
+.footer-inner a:hover { color: var(--dark); }
+.footer-links { display: flex; gap: 1.25rem; }
+
+/* =====================
+   Lightbox
+   ===================== */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.88);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+#lightbox.lb-open {
+  display: flex;
+  animation: pageFadeIn 0.18s var(--anim-ease) both;
+}
+.lb-img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 6px;
+  object-fit: contain;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+.lb-close {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+  padding: 0.25rem 0.5rem;
+}
+.lb-close:hover { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  #lightbox.lb-open { animation: none; }
+}
+
+/* =====================
+   404
+   ===================== */
+.void-page {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 60vh; text-align: center; gap: 1rem;
+}
+.void-page img  { max-width: 260px; opacity: 0.85; }
+.void-page h1   { font-size: 1.5rem; color: var(--dark); margin: 0; }
+.void-page p    { color: var(--muted); font-size: 0.95rem; margin: 0; }
+
+/* =====================
+   Responsive
+   ===================== */
+@media (max-width: 560px) {
+  .hero { flex-direction: column; align-items: center; }
+  .hero-body { text-align: center; }
+  .hero-aside { min-width: unset; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
